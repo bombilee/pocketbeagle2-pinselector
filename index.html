@@ -17,7 +17,7 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 800px;
             width: 100%;
         }
 
@@ -82,14 +82,40 @@
         }
 
         .fixed-func.vin {
-            background-color: #7fffd4; /* Aquamarine */
+            background-color: #ff0000; /*Red */
             color: #000;
         }
-        
+		
         .fixed-func.vout {
             background-color: #ef4444; /* Red */
             color: #000;
+        }        
+
+        .fixed-func.gpio {
+            background-color: #73b761; /* green */
+            color: #000;
         }
+        
+		
+		.fixed-func.usb {
+            background-color: #4682B4; /* Steel Blue */
+            color: #000;
+        }
+
+		.fixed-func.pwrbt {
+            background-color: #6a8c8e; /* Teal */
+            color: #ffffff;
+        }
+		.fixed-func.rst {
+            background-color: #e670b1; /* Pink */
+            color: #000;
+        }
+		.fixed-func.adc {
+            background-color: #a7e0a7; /* Light Green */
+            color: #000;
+        }
+		
+		
 
         .pin-row-item .fixed-func {
             text-align: center;
@@ -156,11 +182,19 @@
 
             <!-- Board Image -->
             <div class="flex-shrink-0">
-                <img src="https://docs.beagleboard.org/_images/pocketbeagle-2-front.jpg" alt="PocketBeagle 2 Board" class="rounded-xl shadow-lg border-2 border-gray-300 w-[300px]" style="transform: rotate(90deg);">
+                <img src="https://docs.beagle.cc/_images/PocketBeagle-2-P1.svg" alt="PocketBeagle 2 Board" class="rounded-xl shadow-lg border-2 border-gray-300 w-[500px]" >
             </div>
-
+		</div>
+		<div class="mt-8 pt-6 border-t border-gray-200 flex flex-col items-center space-y-4">
+		</div>
+        <div class="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16  ">
             <!-- Right Side Pins (P2 Header) -->
             <div id="p2-pins" class="flex flex-col items-start flex-grow">
+            </div>
+			
+            <!-- Board Image -->
+            <div class="flex-shrink-0">
+                <img src="https://docs.beagle.cc/_images/PocketBeagle-2-P2.svg" alt="PocketBeagle 2 Board" class="rounded-xl shadow-lg border-2 border-gray-300 w-[500px]" >
             </div>
         </div>
 
@@ -194,22 +228,22 @@
             // P1 Header Pins (left side)
             'P1_01': { fixed: 'VIN-5V', type: 'vin' },
             'P1_02': { dtsPin: 'pinctrl-pocketbeagle2-p1-02-pins', options: { 'MCASP0_AXR0 (E18)': '0x000', 'PR0_ECAP0_IN_APWM_OUT (E18)': '0x001', 'AUDIO_EXT_REFCLK0 (E18)': '0x002', 'PR0_UART0_TXD (E18)': '0x005', 'EHRPWM1_B (E18)': '0x006', 'GPIO1_10 (E18)': '0x007', 'EQEP0_I (E18)': '0x008', 'RGMII2_TX_CTL (AA19)': '0x000', 'RMII2_TX_EN (AA19)': '0x001', 'MCASP2_AXR4 (AA19)': '0x002', 'PR0_PRU1_GPO0 (AA19)': '0x003', 'PR0_PRU1_GPI0 (AA19)': '0x004', 'GPIO0_87 (AA19)': '0x007' } },
-            'P1_03': { dtsPin: 'pinctrl-pocketbeagle2-p1-03-pins', options: { 'USB1_DRVVBUS (F18)': '0x000', 'GPIO1_51 (F18)': '0x007' } },
+            'P1_03': { fixed: 'USB1_DRVVBUS', type: 'usb' },
             'P1_04': { dtsPin: 'pinctrl-pocketbeagle2-p1-04-pins', options: { 'MCASP0_AFSX (D20)': '0x000', 'SPI2_CS3 (D20)': '0x001', 'AUDIO_EXT_REFCLK1 (D20)': '0x002', 'GPIO1_12 (D20)': '0x007', 'EQEP1_B (D20)': '0x008', 'RGMII2_TD0 (Y18)': '0x000', 'RMII2_TXD0 (Y18)': '0x001', 'MCASP2_AXR6 (Y18)': '0x002', 'PR0_PRU1_GPO2 (Y18)': '0x003', 'PR0_PRU1_GPI2 (Y18)': '0x004', 'GPIO0_89 (Y18)': '0x007' } },
             'P1_05': { fixed: 'USB1_VBUS', type: 'vin' },
             'P1_06': { dtsPin: 'pinctrl-pocketbeagle2-p1-06-pins', options: { 'MCASP0_AFSR (E19)': '0x000', 'SPI2_CS0 (E19)': '0x001', 'UART1_RXD (E19)': '0x002', 'EHRPWM0_A (E19)': '0x006', 'GPIO1_13 (E19)': '0x007', 'EQEP1_S (E19)': '0x008', 'RGMII1_TD3 (AD18)': '0x000', 'PR0_UART0_TXD (AD18)': '0x002', 'GPIO0_78 (AD18)': '0x007' } },
             'P1_07': { fixed: 'VIN-USB', type: 'vin' },
             'P1_08': { dtsPin: 'pinctrl-pocketbeagle2-p1-08-pins', options: { 'MCASP0_ACLKR (A20)': '0x000', 'SPI2_CLK (A20)': '0x001', 'UART1_TXD (A20)': '0x002', 'EHRPWM0_B (A20)': '0x006', 'GPIO1_14 (A20)': '0x007', 'EQEP1_I (A20)': '0x008' } },
-            'P1_09': { fixed: 'USB1_DM', type: 'gnd' },
+            'P1_09': { fixed: 'USB1_DM', type: 'usb' },
             'P1_10': { dtsPin: 'pinctrl-pocketbeagle2-p1-10-pins', options: { 'EXT_REFCLK1 (A18)': '0x000', 'MCASP0_AXR3 (B19)': '0x000', 'SYSCLKOUT0 (A18)': '0x003', 'SPI2_D0 (B19)': '0x001', 'UART1_CTSn (B19)': '0x002', 'UART6_RXD (B19)': '0x003', 'PR0_IEP0_EDIO_DATA_IN_OUT28 (B19)': '0x004', 'ECAP1_IN_APWM_OUT (B19)': '0x005', 'PR0_UART0_RXD (B19)': '0x006', 'GPIO1_7 (B19)': '0x007', 'GPIO1_30 (A18)': '0x007', 'EQEP0_A (B19)': '0x008', 'ECAP0_IN_APWM_OUT (A18)': '0x008' } },
-            'P1_11': { fixed: 'USB1_DP', type: 'gnd' },
+            'P1_11': { fixed: 'USB1_DP', type: 'usb' },
             'P1_12': { dtsPin: 'pinctrl-pocketbeagle2-p1-12-pins', options: { 'MCASP0_AXR2 (A19)': '0x000', 'RGMII1_TD2 (AE18)': '0x000', 'SPI2_D1 (A19)': '0x001', 'UART1_RTSn (A19)': '0x002', 'PR0_UART0_RXD (AE18)': '0x002', 'UART6_TXD (A19)': '0x003', 'PR0_IEP0_EDIO_DATA_IN_OUT29 (A19)': '0x004', 'ECAP2_IN_APWM_OUT (A19)': '0x005', 'PR0_UART0_TXD (A19)': '0x006', 'GPIO1_8 (A19)': '0x007', 'GPIO0_77 (AE18)': '0x007', 'EQEP0_B (A19)': '0x008' } },
-            'P1_13': { fixed: 'USB1_ID', type: 'gnd' },
+            'P1_13': { fixed: 'USB1_ID', type: 'usb' },
             'P1_14': { fixed: 'VOUT-3.3V', type: 'vout' },
             'P1_15': { fixed: 'GND', type: 'gnd' },
             'P1_16': { fixed: 'GND', type: 'gnd' },
-            'P1_17': { fixed: 'VREFN-1.8V', type: 'gnd' },
-            'P1_18': { fixed: 'VREFP-1.8V', type: 'vout' },
+            'P1_17': { fixed: 'VREFN', type: 'gnd' },
+            'P1_18': { fixed: 'VREFP', type: 'vout' },
             'P1_19': { dtsPin: 'pinctrl-pocketbeagle2-p1-19-pins', options: { 'RGMII2_RX_CTL (AD22)': '0x000', 'RMII2_RX_ER (AD22)': '0x001', 'MCASP2_AXR3 (AD22)': '0x002', 'PR0_PRU0_GPO0 (AD22)': '0x003', 'PR0_PRU0_GPI0 (AD22)': '0x004', 'GPIO1_1 (AD22)': '0x007' } },
             'P1_20': { dtsPin: 'pinctrl-pocketbeagle2-p1-20-pins', options: { 'VOUT0_DATA5 (Y24)': '0x000', 'GPMC0_A5 (Y24)': '0x001', 'PR0_PRU1_GPO5 (Y24)': '0x002', 'PR0_PRU1_GPI5 (Y24)': '0x003', 'UART4_TXD (Y24)': '0x004', 'PR0_PRU0_GPO13 (Y24)': '0x005', 'PR0_PRU0_GPI13 (Y24)': '0x006', 'GPIO0_50 (Y24)': '0x007' } },
             'P1_21': { dtsPin: 'pinctrl-pocketbeagle2-p1-21-pins', options: { 'RGMII2_RD3 (AE22)': '0x000', 'AUDIO_EXT_REFCLK0 (AE22)': '0x002', 'PR0_PRU0_GPO16 (AE22)': '0x003', 'PR0_PRU0_GPI16 (AE22)': '0x004', 'PR0_UART0_TXD (AE22)': '0x005', 'GPIO1_6 (AE22)': '0x007', 'EQEP2_B (AE22)': '0x008' } },
@@ -241,11 +275,11 @@
             'P2_09': { dtsPin: 'pinctrl-pocketbeagle2-p2-09-pins', options: { 'UART0_CTSn (A15)': '0x000', 'SPI0_CS2 (A15)': '0x001', 'I2C3_SCL (A15)': '0x002', 'UART2_RXD (A15)': '0x003', 'TIMER_IO6 (A15)': '0x004', 'AUDIO_EXT_REFCLK0 (A15)': '0x005', 'PR0_ECAP0_SYNC_OUT (A15)': '0x006', 'GPIO1_22 (A15)': '0x007', 'MCASP2_AFSX (A15)': '0x008', 'MMC2_SDCD (A15)': '0x009', 'MCU_MCAN1_RX (D4)': '0x000', 'MCU_TIMER_IO3 (D4)': '0x001', 'MCU_SPI0_CS2 (D4)': '0x002', 'MCU_SPI1_CS2 (D4)': '0x003', 'MCU_SPI1_CLK (D4)': '0x004', 'MCU_GPIO0_16 (D4)': '0x007' } },
             'P2_10': { dtsPin: 'pinctrl-pocketbeagle2-p2-10-pins', options: { 'RGMII2_TD2 (AD21)': '0x000', 'MCASP2_AFSX (AD21)': '0x002', 'PR0_PRU1_GPO4 (AD21)': '0x003', 'PR0_PRU1_GPI4 (AD21)': '0x004', 'PR0_ECAP0_IN_APWM_OUT (AD21)': '0x005', 'GPIO0_91 (AD21)': '0x007', 'EQEP2_I (AD21)': '0x008' } },
             'P2_11': { dtsPin: 'pinctrl-pocketbeagle2-p2-11-pins', options: { 'UART0_RTSn (B15)': '0x000', 'SPI0_CS3 (B15)': '0x001', 'I2C3_SDA (B15)': '0x002', 'UART2_TXD (B15)': '0x003', 'TIMER_IO7 (B15)': '0x004', 'AUDIO_EXT_REFCLK1 (B15)': '0x005', 'PR0_ECAP0_IN_APWM_OUT (B15)': '0x006', 'GPIO1_23 (B15)': '0x007', 'MCASP2_ACLKX (B15)': '0x008', 'MMC2_SDWP (B15)': '0x009', 'MCU_MCAN1_TX (E5)': '0x000', 'MCU_TIMER_IO2 (E5)': '0x001', 'MCU_SPI1_CS1 (E5)': '0x003', 'MCU_EXT_REFCLK0 (E5)': '0x004', 'MCU_GPIO0_15 (E5)': '0x007' } },
-            'P2_12': { fixed: 'GND', type: 'gnd' },
+            'P2_12': { fixed: 'PWR_BTN', type: 'pwrbt' },
             'P2_13': { fixed: 'VOUT-5V', type: 'vout' },
             'P2_14': { fixed: 'VIN-BAT', type: 'vin' },
             'P2_15': { fixed: 'GND', type: 'gnd' },
-            'P2_16': { fixed: 'BAT-TEMP', type: 'vin' },
+            'P2_16': { fixed: 'BAT-TEMP', type: 'adc' },
             'P2_17': { dtsPin: 'pinctrl-pocketbeagle2-p2-17-pins', options: { 'VOUT0_PCLK (AC24)': '0x000', 'GPMC0_A19 (AC24)': '0x001', 'PR0_PRU1_GPO19 (AC24)': '0x002', 'PR0_PRU1_GPI19 (AC24)': '0x003', 'UART2_CTSn (AC24)': '0x004', 'PR0_PRU0_GPO19 (AC24)': '0x005', 'PR0_PRU0_GPI19 (AC24)': '0x006', 'GPIO0_64 (AC24)': '0x007', 'PR0_ECAP0_IN_APWM_OUT (AC24)': '0x008' } },
             'P2_18': { dtsPin: 'pinctrl-pocketbeagle2-p2-18-pins', options: { 'VOUT0_DATA8 (V21)': '0x000', 'GPMC0_A8 (V21)': '0x001', 'PR0_PRU1_GPO16 (V21)': '0x002', 'PR0_PRU1_GPI16 (V21)': '0x003', 'UART6_RXD (V21)': '0x004', 'PR0_PRU0_GPO17 (V21)': '0x005', 'PR0_PRU0_GPI17 (V21)': '0x006', 'GPIO0_53 (V21)': '0x007' } },
             'P2_19': { dtsPin: 'pinctrl-pocketbeagle2-p2-19-pins', options: { 'RGMII2_TD3 (AC20)': '0x000', 'MCASP2_ACLKX (AC20)': '0x002', 'PR0_PRU1_GPO16 (AC20)': '0x003', 'PR0_PRU1_GPI16 (AC20)': '0x004', 'PR0_ECAP0_SYNC_OUT (AC20)': '0x005', 'PR0_UART0_CTSn (AC20)': '0x006', 'GPIO1_0 (AC20)': '0x007', 'EQEP2_S (AC20)': '0x008' } },
@@ -255,7 +289,7 @@
             'P2_23': { fixed: 'VOUT-3.3V', type: 'vout' },
             'P2_24': { dtsPin: 'pinctrl-pocketbeagle2-p2-24-pins', options: { 'VOUT0_DATA6 (Y23)': '0x000', 'GPMC0_A6 (Y23)': '0x001', 'PR0_PRU1_GPO6 (Y23)': '0x002', 'PR0_PRU1_GPI6 (Y23)': '0x003', 'UART5_RXD (Y23)': '0x004', 'PR0_PRU0_GPO14 (Y23)': '0x005', 'PR0_PRU0_GPI14 (Y23)': '0x006', 'GPIO0_51 (Y23)': '0x007' } },
             'P2_25': { dtsPin: 'pinctrl-pocketbeagle2-p2-25-pins', options: { 'SPI0_D1 (B14)': '0x000', 'CP_GEMAC_CPTS0_HW2TSPUSH (B14)': '0x001', 'EHRPWM_TZn_IN0 (B14)': '0x002', 'GPIO1_19 (B14)': '0x007' } },
-            'P2_26': { fixed: 'GND', type: 'gnd' }, // Not in TXT file, preserving
+            'P2_26': { fixed: 'nRESET', type: 'rst' }, // Not in TXT file, preserving
             'P2_27': { dtsPin: 'pinctrl-pocketbeagle2-p2-27-pins', options: { 'SPI0_D0 (B13)': '0x000', 'CP_GEMAC_CPTS0_HW1TSPUSH (B13)': '0x001', 'EHRPWM1_B (B13)': '0x002', 'GPIO1_18 (B13)': '0x007' } },
             'P2_28': { dtsPin: 'pinctrl-pocketbeagle2-p2-28-pins', options: { 'VOUT0_HSYNC (AB24)': '0x000', 'GPMC0_A16 (AB24)': '0x001', 'PR0_PRU1_GPO15 (AB24)': '0x002', 'PR0_PRU1_GPI15 (AB24)': '0x003', 'UART3_RTSn (AB24)': '0x004', 'PR0_PRU0_GPO6 (AB24)': '0x005', 'PR0_PRU0_GPI6 (AB24)': '0x006', 'GPIO0_61 (AB24)': '0x007' } },
             'P2_29': { dtsPin: 'pinctrl-pocketbeagle2-p2-29-pins', options: { 'SPI0_CLK (A14)': '0x000', 'CP_GEMAC_CPTS0_TS_SYNC (A14)': '0x001', 'EHRPWM1_A (A14)': '0x002', 'GPIO1_17 (A14)': '0x007', 'GPMC0_DIR (M22)': '0x000', 'PR0_ECAP0_IN_APWM_OUT (M22)': '0x001', 'MCASP2_AXR13 (M22)': '0x003', 'PR0_PRU0_GPO16 (M22)': '0x004', 'PR0_PRU0_GPI16 (M22)': '0x005', 'GPIO0_40 (M22)': '0x007', 'EQEP2_S (M22)': '0x008' } },
@@ -289,7 +323,7 @@
             'EHRPWM': ['EHRPWM1_B (E18)', 'EHRPWM0_A (E19)', 'EHRPWM0_B (A20)', 'EHRPWM2_B (E14)', 'EHRPWM2_A (D14)', 'EHRPWM0_SYNCO (A17)', 'EHRPWM2_B (A17)', 'EHRPWM2_A (B17)', 'EHRPWM1_A (B18)', 'EHRPWM_TZn_IN3 (C15)', 'EHRPWM_TZn_IN4 (E15)', 'EHRPWM_TZn_IN0 (B14)', 'EHRPWM1_B (B13)', 'EHRPWM1_A (A14)', 'EHRPWM0_A (A13)', 'EHRPWM0_B (C13)', 'EHRPWM_TZn_IN5 (C13)'],
             'PRU_ICSSM0_PRU0': ['PR0_PRU0_GPO0 (AD22)', 'PR0_PRU0_GPI0 (AD22)', 'PR0_PRU0_GPO13 (Y24)', 'PR0_PRU0_GPI13 (Y24)', 'PR0_PRU0_GPO16 (AE22)', 'PR0_PRU0_GPI16 (AE22)', 'PR0_PRU0_GPO4 (AC21)', 'PR0_PRU0_GPI4 (AC21)', 'PR0_PRU0_GPO3 (AB20)', 'PR0_PRU0_GPI3 (AB20)', 'PR0_PRU0_GPO2 (AE23)', 'PR0_PRU0_GPI2 (AE23)', 'PR0_PRU0_GPO19 (K22)', 'PR0_PRU0_GPI19 (K22)', 'PR0_PRU0_GPO7 (Y20)', 'PR0_PRU0_GPI7 (Y20)', 'PR0_PRU0_GPO4 (Y22)', 'PR0_PRU0_GPI4 (Y22)', 'PR0_PRU0_GPO1 (AA23)', 'PR0_PRU0_GPI1 (AA23)', 'PR0_PRU0_GPO1 (AD23)', 'PR0_PRU0_GPI1 (AD23)', 'PR0_PRU0_GPO0 (V20)', 'PR0_PRU0_GPI0 (V20)', 'PR0_PRU0_GPO19 (AC24)', 'PR0_PRU0_GPI19 (AC24)', 'PR0_PRU0_GPO18 (AC25)', 'PR0_PRU0_GPI18 (AC25)', 'PR0_PRU0_GPO14 (Y23)', 'PR0_PRU0_GPI14 (Y23)', 'PR0_PRU0_GPO12 (Y25)', 'PR0_PRU0_GPI12 (Y25)', 'PR0_PRU0_GPO6 (AB24)', 'PR0_PRU0_GPI6 (AB24)', 'PR0_PRU0_GPO16 (M22)', 'PR0_PRU0_GPI16 (M22)', 'PR0_PRU0_GPO3 (AA24)', 'PR0_PRU0_GPI3 (AA24)', 'PR0_PRU0_GPO2 (AB25)', 'PR0_PRU0_GPI2 (AB25)', 'PR0_PRU0_GPO15 (AA25)', 'PR0_PRU0_GPI15 (AA25)', 'PR0_PRU0_GPO5 (AA21)', 'PR0_PRU0_GPI5 (AA21)', 'PR0_PRU0_GPO16 (W21)', 'PR0_PRU0_GPI16 (W21)'],
             'PRU_ICSSM0_PRU1': ['PR0_PRU1_GPO0 (AA19)', 'PR0_PRU1_GPI0 (AA19)', 'PR0_PRU1_GPO2 (Y18)', 'PR0_PRU1_GPI2 (Y18)', 'PR0_PRU1_GPO5 (Y24)', 'PR0_PRU1_GPI5 (Y24)', 'PR0_PRU1_GPO16 (V21)', 'PR0_PRU1_GPI16 (V21)', 'PR0_PRU1_GPO19 (AC24)', 'PR0_PRU1_GPI19 (AC24)', 'PR0_PRU1_GPO18 (AC25)', 'PR0_PRU1_GPI18 (AC25)', 'PR0_PRU1_GPO6 (Y23)', 'PR0_PRU1_GPI6 (Y23)', 'PR0_PRU1_GPO4 (Y25)', 'PR0_PRU1_GPI4 (Y25)', 'PR0_PRU1_GPO15 (AB24)', 'PR0_PRU1_GPI15 (AB24)', 'PR0_PRU1_GPO12 (AA24)', 'PR0_PRU1_GPI12 (AA24)', 'PR0_PRU1_GPO11 (AB25)', 'PR0_PRU1_GPI11 (AB25)', 'PR0_PRU1_GPO7 (AA25)', 'PR0_PRU1_GPI7 (AA25)', 'PR0_PRU1_GPO14 (AA21)', 'PR0_PRU1_GPI14 (AA21)', 'PR0_PRU1_GPO8 (W21)', 'PR0_PRU1_GPI8 (W21)'],
-            'AIN': ['AIN0', 'AIN1', 'AIN2', 'AIN3', 'AIN4']
+            'AIN': ['AIN0', 'AIN1', 'AIN2', 'AIN3', 'AIN4', 'AIN5', 'AIN6']
         };
 
         // State to track current pin assignments and conflicts
@@ -367,7 +401,7 @@
 
                 const rowDiv = document.createElement('div');
                 rowDiv.className = 'pin-row w-full';
-                rowDiv.style = 'width: 70%;'
+                rowDiv.style = 'width: 50%;'
 
                 const innerPinItem = createPinItem(innerPin, 'left');
                 const outerPinItem = createPinItem(outerPin, 'left');
@@ -383,7 +417,7 @@
 
                 const rowDiv = document.createElement('div');
                 rowDiv.className = 'pin-row w-full';
-                rowDiv.style = 'width: 55%; font-size: 10%; font-weight: bold;'
+                rowDiv.style = 'width: 50%; font-size: 10%; font-weight: bold;'
 
                 const innerPinItem = createPinItem(innerPin, 'left');
                 const outerPinItem = createPinItem(outerPin, 'left');
